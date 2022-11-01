@@ -1,13 +1,18 @@
 import type { NextPage } from 'next'
 import Button from '../components/Element/Button/Index'
-import LayoutApp from '../components/Layouts/Frontend/Index'
+import Navbar from '../components/Parts/Navbar/Index'
+import Head from 'next/head'
 
 const Home: NextPage = () => {
   return (
-    <LayoutApp>
-        <Button link="/auth/signin">Login</Button>
-        <Button>Register</Button>
-    </LayoutApp>
+    <>
+      <div>
+        <Head>
+            <title>Hallo dunia</title>
+        </Head>
+        <Navbar/>
+      </div>
+    </>
   )
 }
 
