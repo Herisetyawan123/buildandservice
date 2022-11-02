@@ -1,13 +1,13 @@
 import type { NextPage } from 'next'
-import Button from '../components/Element/Button/Index'
-import LayoutApp from '../components/Layouts/Frontend/Index'
+import LayoutApp from '../layouts/Frontend'
 
 const Home: NextPage = () => {
   return (
-    <LayoutApp>
-        <Button link="/auth/signin">Login</Button>
-        <Button>Register</Button>
-    </LayoutApp>
+    <>
+      <LayoutApp>
+
+      </LayoutApp>
+    </>
   )
 }
 
