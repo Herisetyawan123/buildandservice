@@ -7,12 +7,23 @@ const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       type: 'credentials',
-      credentials: {},
+      credentials: {
+        email: {
+          label: 'email',
+          type: 'email',
+          placeholder: 'example@mail.com',
+        },
+        password: { label: 'password', type: 'password' },
+      },
       authorize(credentials, req) {
         const { email, password } = credentials as {
           email: string;
           password: string;
         };
+        if (email !== 'perdanaph@gmail.com' && password !== '12345678') {
+          return 'Wrong email and password';
+        }
+        return { id: '96', name: 'perdanaph', email: 'perdanaph@gmail.com' };
       },
     }),
   ],
