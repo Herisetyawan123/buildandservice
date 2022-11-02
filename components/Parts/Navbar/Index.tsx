@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "../../Element/Button/Index";
+import { signIn } from "next-auth/react";
 
 const Navbar = () => {
     return (
@@ -15,7 +16,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div>
-                    <Button link="">Login</Button>
+                    <Button onClick={() => signIn() }>Login</Button>
                 </div>
             </nav>
         </header>
