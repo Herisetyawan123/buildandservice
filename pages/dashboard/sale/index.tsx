@@ -1,10 +1,10 @@
 import { NextPage } from "next";
 import { useSession } from "next-auth/react";
-import LayoutDash from "../../layouts/Backend";
+import LayoutDash from "../../../layouts/Backend";
 
 
 
-const Source: NextPage = (): JSX.Element => {
+const Sale: NextPage = (): JSX.Element => {
 
   return (
     <LayoutDash>
@@ -16,4 +16,4 @@ const Source: NextPage = (): JSX.Element => {
 
 }
 
-export default Source;
+export default Sale;
