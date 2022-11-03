@@ -1,5 +1,9 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
+import GithubProvider from 'next-auth/providers/github';
+import TwitterProvider from 'next-auth/providers/twitter';
+
 const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
@@ -18,6 +22,19 @@ const authOptions: NextAuthOptions = {
         }
         return { id: '96', name: 'perdanaph', email: 'perdanaph@gmail.com' };
       },
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
+    GithubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    }),
+    TwitterProvider({
+      clientId: process.env.TWITTER_CLIENT_ID as string,
+      clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
+      version: '2.0',
     }),
   ],
   pages: {

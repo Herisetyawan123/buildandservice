@@ -4,6 +4,7 @@ import Link from "next/link"
 import Router from "next/router"
 import { useEffect } from "react"
 import { FaCode, FaDashcube, FaSalesforce, FaServicestack, FaSignOutAlt } from "react-icons/fa"
+import { signOut } from "next-auth/react"
 
 const LayoutDash = ({ children, title = "Dashboard - BuildAndService" }: { children: React.ReactNode, title?: string }) => {
 
@@ -45,7 +46,7 @@ const LayoutDash = ({ children, title = "Dashboard - BuildAndService" }: { child
                             </Link> 
                         </div>
                         <div>
-                            <button className="flex items-center gap-x-3 font-medium bg-blue-300 px-5 py-2 rounded-md text-white"><FaSignOutAlt /> Sign Out</button>
+                            <button className="flex items-center gap-x-3 font-medium bg-blue-300 px-5 py-2 rounded-md text-white" onClick={ () => signOut() }><FaSignOutAlt /> Sign Out</button>
                         </div>
                     </div>
                 </div>
