@@ -2,25 +2,20 @@ import { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import Router from "next/router";
 import { useEffect } from "react";
+import LayoutDash from "../../layouts/Backend";
 
 
 
 const Home: NextPage = (): JSX.Element => {
-  const {status, data} = useSession();
-  useEffect(() => {
-    if (status == 'unauthenticated') Router.replace('/auth/signin')
-  }, [status])
-  if (status == 'authenticated') {
-    return (
-      <div>
-        Ini halaman dashboard
-        <p>{JSON.stringify(data.user?.name)}</p>     
-      </div>
-    )
-  }
+
   return (
-    <div>Loading</div>
+    <LayoutDash>
+      <div>
+        Ini halaman dashboard  
+      </div>
+    </LayoutDash>
   )
+
 }
 
 export default Home;
