@@ -29,7 +29,7 @@ const authOptions: NextAuthOptions = {
         }
         const comparePassword = hashPassword.compare(password, data.password);
         if (!comparePassword) {
-          throw new Error('Wrong password');
+          throw new Error('Wrong email and password');
         }
         return { data, status };
       },

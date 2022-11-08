@@ -27,11 +27,10 @@ const authOptions: NextAuthOptions = {
         if (error) {
           throw new Error('Email is not exist');
         }
-        const comparePassword = hashPassword.compare(password, data.password);
-        if (!comparePassword) {
-          throw new Error('Wrong password');
+        if (hashPassword.compare(password as string, data.password as string)) {
+          throw new Error('Wrong email and password');
         }
-        return { data, status };
+        return { id: '96', name: 'perdanaph', email: 'perdanaph@gmail.com' };
       },
     }),
     GoogleProvider({

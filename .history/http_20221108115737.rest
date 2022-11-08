@@ -1,0 +1,11 @@
+GET http://localhost:3000/api/profiles
+
+###
+POST http://localhost:3000/api/profiles 
+Content-Type: application/json
+
+{
+  "username": "bejo",
+  "full_name": "bejo tejo",
+  "password": "12345678"
+}
