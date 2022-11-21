@@ -11,7 +11,7 @@ const LayoutApp = (
     }
     )=>{
         return (
-            <div>
+            <div className='bg-[#f6f8fd]'>
                 <Head>
                     <title>{ title }</title>
                 </Head>
