@@ -20,16 +20,19 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        <div className='max-w-6xl mx-auto py-10'>
-          <div>
-            <h3 className='font-medium text-green-500 text-lg'>we shall never deny guest even the most ridiculous request.</h3>
-            <h1 className='text-slate-600 font-bold text-3xl mt-2'>Our Service</h1>
-          </div>
-          <div>
+        <section className='bg-[#c8e7df] w-full'>
+        
+          <div className='max-w-6xl mx-auto py-10'>
+            <div>
+              <h3 className='font-medium text-green-500 text-lg'>we shall never deny guest even the most ridiculous request.</h3>
+              <h1 className='text-slate-600 font-bold text-3xl mt-2'>Our Service</h1>
+            </div>
+            <div className='mt-5 flex'>
 
+            </div>
           </div>
 
-        </div>
+        </section>
         <div className='max-w-6xl mx-auto py-10'>
           <div>
             <h3 className='font-medium text-green-500 text-lg'>Info lebih lanjut</h3>
