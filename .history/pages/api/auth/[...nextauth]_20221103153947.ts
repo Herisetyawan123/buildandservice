@@ -3,8 +3,6 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from 'next-auth/providers/github';
 import TwitterProvider from 'next-auth/providers/twitter';
-import supabase from '../../../utils/supabase-service';
-import hashPassword from '../../../utils/encrypt';
 
 const authOptions: NextAuthOptions = {
   session: {
@@ -14,24 +12,15 @@ const authOptions: NextAuthOptions = {
     CredentialsProvider({
       type: 'credentials',
       credentials: {},
-      async authorize(credentials, req) {
+      authorize(credentials, req) {
         const { email, password } = credentials as {
           email: string;
           password: string;
         };
-        const { data, status, error } = await supabase
-          .from('profiles')
-          .select('email, password')
-          .eq('email', email)
-          .single();
-        if (error) {
-          throw new Error('Email is not exist');
+        if (email !== 'perdanaph@gmail.com' || password !== '12345678') {
+          throw new Error('Wrong email and password');
         }
-        const comparePassword = hashPassword.compare(password, data.password);
-        if (!comparePassword) {
-          throw new Error('Wrong password');
-        }
-        return { data, status };
+        return { id: '96', name: 'perdanaph', email: 'perdanaph@gmail.com' };
       },
     }),
     GoogleProvider({
