@@ -1,0 +1,33 @@
+database
+
+products:
+ - name
+ - description
+ - price
+ - discount (nullable)
+ - category_id
+ - thumbnail
+
+categories:
+ - id
+ - type
+
+
+request_projects:
+ - nama_pemesan
+ - phone
+ - Judul
+ - type (website, mobile)
+ - deskripsi
+ - referensi (nullable)
+ - estimasi
+ - range_min
+ - range_max
+ - srs (nullable)
+
+storage:
+ - bucket srs
+ - bucket thumbnail
+
+
+
