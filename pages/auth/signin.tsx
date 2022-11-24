@@ -4,7 +4,7 @@ import Link from "next/link";
 import Router from "next/router";
 import { FormEventHandler, useEffect, useState } from "react";
 import Button from "../../components/Element/Button/Index";
-
+import Abstrak from "../../assets/bg/abstrak.svg"
 interface Props{}
 const SignIn: NextPage = (props): JSX.Element => {
   const [userInfo, setUserInfo] = useState({email: "", password: ""})
@@ -28,7 +28,7 @@ const SignIn: NextPage = (props): JSX.Element => {
   }
 
   return (
-    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
+    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden bg-green-100" style={{ backgroundImage: `url(${Abstrak.src})` }}>
       <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
         <h1 className="text-3xl text-center">SignIn</h1>
         <form className="mt-6" onSubmit={handleSubmit}>
@@ -81,7 +81,7 @@ const SignIn: NextPage = (props): JSX.Element => {
 
         <p className="mt-8 text-xs font-light text-center text-gray-700">Do not have an account? <span> </span>
             <Link
-                href="#"
+                href="/auth/signup"
                 className="font-medium text-gray-600 hover:underline"
             >
                 Sign up
