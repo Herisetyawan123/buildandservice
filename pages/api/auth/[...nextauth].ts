@@ -14,7 +14,7 @@ const authOptions: NextAuthOptions = {
     CredentialsProvider({
       type: 'credentials',
       credentials: {},
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const { email, password } = credentials as {
           email: string;
           password: string;
@@ -31,7 +31,7 @@ const authOptions: NextAuthOptions = {
         if (!comparePassword) {
           throw new Error('Wrong password');
         }
-        return { data, status };
+        return { data, status } as any;
       },
     }),
     GoogleProvider({
@@ -51,5 +51,6 @@ const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/auth/signin',
   },
+  secret: "asdkjviu3yr38qpyr9yaesofj983ropdsoodjf3298r937990f"
 };
 export default NextAuth(authOptions);
