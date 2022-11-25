@@ -6,10 +6,13 @@ import { FormEventHandler, useEffect, useState } from "react";
 import Button from "../../components/Element/Button/Index";
 import Abstrak from "../../assets/bg/abstrak.svg"
 import Loading from "../../components/Element/Modal/Loading";
+import FailedModal from "../../components/Element/Modal/FailedModal";
 interface Props{}
 const SignIn: NextPage = (props): JSX.Element => {
   const [userInfo, setUserInfo] = useState({email: "", password: ""})
   const [loading, setLoading] = useState(false)
+  const [fail, setFail] = useState(false)
+  const [error, setError] = useState('')
   const {status, data} = useSession()
 
   useEffect(() => {
@@ -25,7 +28,10 @@ const SignIn: NextPage = (props): JSX.Element => {
       redirect: false
     })
     setLoading(false)
-    console.log(res)
+    if(!res.ok){
+      setFail(!fail)
+      setError(res.error)
+    }
   }
 
   return (
@@ -89,7 +95,8 @@ const SignIn: NextPage = (props): JSX.Element => {
             </Link>
         </p>
       </div>
-      <Loading />
+      <Loading show={loading} />
+      <FailedModal show={fail} error={error} onClick={() => setFail(!fail)} />
     </div>
   )
 }
