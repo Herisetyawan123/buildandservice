@@ -5,6 +5,7 @@ import Router from "next/router";
 import { FormEventHandler, useEffect, useState } from "react";
 import Button from "../../components/Element/Button/Index";
 import Abstrak from "../../assets/bg/abstrak.svg"
+import Loading from "../../components/Element/Modal/Loading";
 interface Props{}
 const SignIn: NextPage = (props): JSX.Element => {
   const [userInfo, setUserInfo] = useState({email: "", password: ""})
@@ -88,6 +89,7 @@ const SignIn: NextPage = (props): JSX.Element => {
             </Link>
         </p>
       </div>
+      <Loading />
     </div>
   )
 }
