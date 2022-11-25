@@ -13,30 +13,57 @@ const SignIn: NextPage = (props): JSX.Element => {
   const [loading, setLoading] = useState(false)
   const [fail, setFail] = useState(false)
   const [error, setError] = useState('')
+  const [valid, setValid] = useState({
+    email: '',
+    password: ''
+  })
   const {status, data} = useSession()
 
   useEffect(() => {
+    if (status == "loading") setLoading(true)
+    if (status == "unauthenticated") setLoading(false)
+    // if (status != "loading") setLoading(!loading)
     if (status == 'authenticated') Router.replace('/dashboard')
   }, [status])
 
+  const validation = () => {
+    let valid = true
+    if(userInfo.email == ""){
+      setValid((prevState) => {
+        return {...prevState, email: "email tidak boleh kosong"}
+      })
+      valid = false
+    }
+    if(userInfo.password == ""){
+      setValid((prevState) => {
+        return {...prevState, password: "password tidak boleh kosong"}
+      })
+      valid = false
+    }
+    return valid
+  }
+
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    setLoading(true)
-    const res = await signIn('credentials', {
-      email: userInfo.email,
-      password: userInfo.password,
-      redirect: false
-    })
-    setLoading(false)
-    if(!res.ok){
-      setFail(!fail)
-      setError(res.error)
+    let check: boolean = validation()
+    if(check){
+      setLoading(true)
+      const res = await signIn('credentials', {
+        email: userInfo.email,
+        password: userInfo.password,
+        redirect: false
+      })
+      setLoading(false)
+      if(!res.ok){
+        setFail(!fail)
+        setError(res.error)
+      }
     }
   }
 
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden bg-green-100" style={{ backgroundImage: `url(${Abstrak.src})` }}>
-      <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
+      <div className="w-[80%] p-6 m-auto mx-auto bg-white rounded-md shadow-xl sm:max-w-xl">
         <h1 className="text-3xl text-center">SignIn</h1>
         <form className="mt-6" onSubmit={handleSubmit}>
           <div>
@@ -44,12 +71,22 @@ const SignIn: NextPage = (props): JSX.Element => {
             <input value={userInfo.email} onChange={({target}) => {
               setUserInfo({...userInfo, email: target.value})
             }} type="email" className="block w-full px-4 py-2 mt-2 text-gray-900 bg-white border rounded-md focus:border-gray-500 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="exampe@mail.com"/>
+            { valid.email ? (
+              <p className="text-red-500">{valid.email}</p>
+            ):(
+              <></>
+            ) }
           </div>
           <div>
             <label className="block py-2 font-semibold text-lg text-gray-900">Password</label>
             <input value={userInfo.password} onChange={({target}) => 
               setUserInfo({...userInfo, password: target.value})
             } type="password" className="block w-full px-4 py-2 mt-2 text-gray-900 bg-white border rounded-md focus:border-gray-500 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="*********"/>
+            { valid.password ? (
+              <p className="text-red-500">{valid.password}</p>
+            ):(
+              <></>
+            ) }
           </div>
           <Link href="#" className="text-xs text-gray-600 hover:underline ">Forget Password?</Link>
           <Button className="w-full hover:bg-blue-800 mt-3 text-center" type="submit" isLoading={loading}>Login</Button>
