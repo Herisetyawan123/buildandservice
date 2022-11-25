@@ -3,7 +3,7 @@ import { FaCode, FaHome, FaPeopleArrows, FaPeopleCarry, FaPersonBooth, FaProduct
 
 const BottomBar = () => {
   return (
-    <div className="sm:hidden block h-[10%] bg-white shadow-md">
+    <div className="sm:hidden block fixed bottom-0 left-0 right-0 h-[10%] bg-white shadow-md">
       <ul className="flex h-full mx-10 gap-x-1 justify-between items-center text-green-600">
         <li>
           <Link href={'/'} className={"flex flex-col items-center gap-y-1"}>
