@@ -2,17 +2,18 @@ import { useSession } from "next-auth/react"
 import Head from "next/head"
 import Link from "next/link"
 import Router from "next/router"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { FaSignOutAlt } from "react-icons/fa"
 import { HiCode, HiCube, HiDatabase, HiOutlineColorSwatch, HiSearch } from "react-icons/hi"
 import { signOut } from "next-auth/react"
+import Loading from "../../components/Element/Modal/Loading"
 
 const LayoutDash = ({ children, title = "Dashboard - BuildAndService" }: { children: React.ReactNode, title?: string }) => {
 
     const {status, data} = useSession()
-
+    const [loading, setLoading] = useState(false) 
     useEffect(() => {
-        
+        if(status == 'loading') setLoading((prevState) => !prevState)
         if (status == 'unauthenticated') Router.replace('/auth/signin')
     }, [status])
 
@@ -78,6 +79,7 @@ const LayoutDash = ({ children, title = "Dashboard - BuildAndService" }: { child
                     </div>
                 </section>
             </main>
+            <Loading show={loading} />
         </div>
     )
 }
