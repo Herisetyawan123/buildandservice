@@ -1,8 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+
 import supabase from '../../../utils/supabase-service';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method == 'POST') {
+  if (req.method == "GET"){
+    const {data, error, status, statusText} = await supabase.from('products').select('*');
+
+    if (error){
+      return res.status(status).json(
+        {
+          statusText,
+          message: error.message
+        }
+      );
+    }
+    
+    return res.status(status).json({ data })
+    console.log(data)
+  }else if (req.method == 'POST') {
     const { name, description, price, discount, category_id, thumbnail } = req.body;
     if (!name && !price && !thumbnail) {
       return res.status(400).json({
@@ -20,6 +35,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (error) {
       return res.status(status).json({ statusText, message: error.message });
     }
-    return res.status(status).json({ message: 'Success', data });
+    return res.status(status).json({ statusText, message: 'Success', data });
   }
 }
