@@ -38,11 +38,11 @@ const ChildBurger = styled.span`
   }
 `;
 
-const Burger = () => {
-  const [click, setClick] = useState(false);
+const Burger = ( { click, onClick } ) => {
+
   return (
     <div className="relative cursor-pointer">
-      <ChildBurger click={click} onClick={() => setClick((prevState) => !prevState)}></ChildBurger>
+      <ChildBurger click={click} onClick={onClick}></ChildBurger>
     </div>
   )
 }
