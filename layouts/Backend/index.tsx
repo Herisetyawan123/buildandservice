@@ -7,13 +7,16 @@ import { FaSignOutAlt } from "react-icons/fa"
 import { HiCode, HiCube, HiDatabase, HiOutlineColorSwatch, HiSearch } from "react-icons/hi"
 import { signOut } from "next-auth/react"
 import Loading from "../../components/Element/Modal/Loading"
+import Burger from "../../components/Element/Burger"
 
 const LayoutDash = ({ children, title = "Dashboard - BuildAndService" }: { children: React.ReactNode, title?: string }) => {
 
     const {status, data} = useSession()
     const [loading, setLoading] = useState(false) 
     useEffect(() => {
-        if(status == 'loading') setLoading((prevState) => !prevState)
+        // console.log(status)
+        // if(status == 'loading') setLoading((prevState) => !prevState)
+        // if(status == 'authenticated') setLoading((prevState) => !prevState)
         if (status == 'unauthenticated') Router.replace('/auth/signin')
     }, [status])
 
@@ -54,32 +57,34 @@ const LayoutDash = ({ children, title = "Dashboard - BuildAndService" }: { child
                 </div>
                 <section className='w-full'>
                     {/* navbar */}
-                    <div className="bg-white h-20 flex justify-end sm:justify-between items-center px-20 shadow">
-                        <div className="hidden sm:block">
-                            
+                    <div className="bg-white h-20 flex justify-between items-center px-5 sm:px-20 shadow ">
+                        <div className="">
+                            <Burger />
                         </div>
-                        <div className="flex gap-x-2 justify-center flex-row items-center">
-                            <div className="relative mr-10">
+                        <div className="flex gap-x-2 justify-end items-center">
+                            <div className="relative sm:mr-10">
                                 <form onSubmit={(e) => e.preventDefault()}>
-                                    <input type="text" placeholder="Search" className="outline outline-gray-600 outline-1 rounded-3xl focus:ring-2 focus:ring-blue-500 px-8 py-2" />
+                                    <input type="text" placeholder="Search" className="outline outline-gray-600 outline-1 rounded-3xl focus:ring-2 focus:ring-blue-500 px-4 sm:px-8 py-2" />
                                     <button className="absolute right-4 top-[25%] w-5 h-5 flex justify-center items-center">
                                         <HiSearch size={20} />
                                     </button>
                                 </form>
                             </div>
-                            <div className="hidden sm:flex items-center gap-x-2">
+                            {/* <div className="hidden sm:flex items-center gap-x-2">
                                 <div className="bg-blue-400 rounded-full w-10 h-10"></div>
                                 <h3 className="text-lg font-semibold">Heri Setyawan</h3>
-                            </div>
+                            </div> */}
+                      
                         </div>
+                        
                     </div>
                     
-                    <div className="py-10 px-20">
+                    <div className="py-10 px-5 sm:px-20">
                         { children }
                     </div>
                 </section>
             </main>
-            <Loading show={loading} />
+            {/* <Loading show={loading} /> */}
         </div>
     )
 }
