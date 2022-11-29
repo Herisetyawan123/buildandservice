@@ -88,7 +88,7 @@ const SignIn: NextPage = (props): JSX.Element => {
               <></>
             ) }
           </div>
-          <Link href="#" className="text-xs text-gray-600 hover:underline ">Forget Password?</Link>
+          <Link href="/auth/forgot" className="text-xs text-gray-600 hover:underline ">Forget Password?</Link>
           <Button className="w-full hover:bg-blue-800 mt-3 text-center" type="submit" isLoading={loading}>Login</Button>
         </form>
         <div className="relative flex items-center justify-center w-full mt-6 border border-t">
