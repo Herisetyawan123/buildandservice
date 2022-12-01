@@ -15,11 +15,6 @@ export default async function formParser(req: NextApiRequest, res: NextApiRespon
       keepExtension: true,
     });
     form.parse(req, (err, fields, files) => {
-      if (Object.entries(files).length === 0) {
-        return res.status(400).json({
-          message: 'Masukkan foto',
-        });
-      }
       if (!err) {
         (req as NextApiRequestMultipart).files = files;
         (req as NextApiRequestMultipart).fields = fields;
