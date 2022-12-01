@@ -1,13 +1,14 @@
-import { Box, Button, ButtonGroup, Flex, Input, InputGroup, InputRightElement, Select, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Flex, Heading, Input, InputGroup, InputRightElement, Select, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import { HiRefresh, HiSearch, HiTrash } from "react-icons/hi";
 
 interface Props{
   data: any
-  onDelete: () => void
-  onEdit: () => void
+  onDelete?: () => void
+  onEdit?: () => void
+  onSubmit?: (e) => void
 }
 
-const DataTable = ( { data } : Props ) => {
+const DataTable = ( { data, onDelete, onEdit, onSubmit } : Props ) => {
   return (
     <>
       <Flex justify={'space-between'}>
@@ -19,7 +20,7 @@ const DataTable = ( { data } : Props ) => {
             <option value={20}>20</option>
           </Select>
         </Box>
-        <form>
+        <form onSubmit={onSubmit}>
           <InputGroup>
             <Input placeholder="search..." />
             <InputRightElement>
@@ -42,6 +43,7 @@ const DataTable = ( { data } : Props ) => {
         </Thead>
         <Tbody>
           {
+            data.length == 0 ?
             data.map((item, index) => (
               <Tr key={index}>
                 <Td>{ index + 1 }</Td>
@@ -58,6 +60,12 @@ const DataTable = ( { data } : Props ) => {
                 </Td>
               </Tr>
             ))
+            :
+            <Tr>
+              <Td colSpan={7} className={'text-center'} >
+                <Heading size={'sm'} textAlign={'center'}>Tidak ada data</Heading>
+              </Td>
+            </Tr>
           }
         </Tbody>
       </Table>

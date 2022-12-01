@@ -1,4 +1,4 @@
-export default function InputText({ name, placeholder, value, label, onChange }: { name: string, placeholder: string, value?: string, label: string, onChange?: () => void }){
+export default function InputText({ name, placeholder, value, label, onChange }: { name: string, placeholder: string, value?: string, label: string, onChange?: (e) => void }){
   return (
     <div className="mb-6">
       <label className="text-base">{ label }</label>
