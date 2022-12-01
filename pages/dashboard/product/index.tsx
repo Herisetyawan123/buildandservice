@@ -1,8 +1,7 @@
 import { NextPage } from "next";
-import { useSession } from "next-auth/react";
-import Card from "../../../components/Element/Card/Card";
-import Table from "../../../components/Element/Table";
 import LayoutDash from "../../../layouts/Backend";
+import { Card, CardBody, CardFooter, CardHeader, Flex, Heading } from "@chakra-ui/react";
+import DataTable from "../../../components/Element/Table/DataTable"
 
 
 
@@ -25,14 +24,21 @@ const Sale: NextPage = (): JSX.Element => {
   ]
   return (
     <LayoutDash>
-      <div>
-        <Card className="rounded-md border">
-          <>
-            <h1>Product</h1>
-            <Table className="w-full mt-5" data={data} />
-          </>
-        </Card>
-      </div>
+      <Card bgColor="white">
+        <CardHeader>
+          <Flex justify={"space-between"} align={"center"}>
+            <Heading size='md'>Semua Product</Heading>
+          </Flex>
+        </CardHeader>
+        <CardBody>
+
+          <DataTable data={data} />
+
+        </CardBody>
+        <CardFooter>
+          
+        </CardFooter>
+      </Card>
     </LayoutDash>
   )
 
