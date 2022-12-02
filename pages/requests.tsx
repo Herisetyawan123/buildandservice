@@ -2,30 +2,118 @@ import { useState, useEffect } from "react";
 import Button from "../components/Element/Button/Index";
 import InputFile from "../components/Element/Input/InputFile";
 import InputText from "../components/Element/Input/InputText";
+import SelectInput from "../components/Element/Input/SelectInput";
+import type { ListSelect } from "../components/Element/Input/SelectInput";
 import LayoutApp from "../layouts/Frontend";
 import projectFetcher from "../utils/functions/projects-fetcher";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useDisclosure, useToast } from "@chakra-ui/react";
+import Loading from "../components/Element/Modal/Loading";
 
 export default function Requests() {
-  const [form, setForm] = useState({})
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [form, setForm] = useState({
+    "name": "",
+    "phone": "",
+    "title_project": "",
+    "type_poject": "-",
+    "description": "",
+    "reference": "",
+    // "estimation": "",
+    "range_min_fee": "",
+    "range_max_fee": "",
+  });
+  const toast = useToast()
   const [file, setFile] = useState('')
+  const [mError, setMerror] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  const data: ListSelect[] = [
+    {
+      key: "Website",
+      value: "Website"
+    },
+    {
+      key: "Mobile",
+      value: "Mobile"
+    },
+    {
+      key: "GUI",
+      value: "GUI"
+    },
+  ]
 
   const inputFileHandler = (e) => {
-   setFile(e.currentTarget.files)
+   setFile(e.target.files[0])
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const formData = new FormData();
-    formData.append('srs', file)
-    Object.entries(form).forEach(([key, value]) => {
-      formData.append(key, value as string);
-    });
-    if(projectFetcher.addProject(formData)){
-      console.log("Berhasil")
-      return
+    let error = []
+    try {
+      if(form.name == "") {
+        error.push({
+          name: "Nomor Phone harap di isi",
+        })
+      }
+      if(form.type_poject == "-") {
+        error.push({
+          type_project: "Nama harap di isi",
+        })
+      }
+      if(form.description == "") {
+        error.push({
+          description: "Description harap di isi",
+        })
+      }
+      if(form.range_max_fee == "") {
+        error.push({
+          range_max_fee: "range max fee harap di isi",
+        })
+      }
+      if(form.range_min_fee == "") {
+        error.push({
+          range_min_fee: "range min fee harap di isi",
+        })
+      }
+      if(form.reference == "") {
+        error.push({
+          reference: "range min fee harap di isi",
+        })
+      }
+      if(file == "") {
+        error.push({
+          srs: "File Requirement Project harap di isi",
+        })
+      }
+      setMerror(error)
+      if(error.length == 0){
+        setLoading(true)
+        const formData = new FormData();
+        formData.append('srs', file)
+        Object.entries(form).forEach(([key, value]) => {
+          formData.append(key, value as string);
+        });
+        const res = await projectFetcher.addProject(formData)
+        if(res.status == 201){
+          toast({
+            title: 'Request Project Added.',
+            description: "We'll be execute your project.",
+            position: 'top-right',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          })
+        }else{
+          throw "Terjadi kesalahan"
+        }
+        setLoading(false)
+      }else{
+        onOpen()
+      }
+      
+    } catch (error) {
+      console.log(error)
     }
-    console.log("ok")
-    return
   }
 
   return (
@@ -54,24 +142,47 @@ export default function Requests() {
                 <InputText onChange={(e) => setForm((prevState) => {
                   return {...prevState, phone: e.target.value}
                 })} name="phone" placeholder="628xxxxx" label="Nomor Telephone" />
+                <SelectInput data={data} onChange={(e) => setForm((prevState) => {
+                  return {...prevState, type_poject: e.target.value}
+                })} name="type" placeholder="website | mobile | GUI | CLI" label="Type Project" />
                 <InputText onChange={(e) => setForm((prevState) => {
-                  return {...prevState, email: e.target.value}
-                })} name="email" placeholder="JunaidiSuparman@mail.com" label="Alamat Email" />
-                <InputText onChange={(e) => setForm((prevState) => {
-                  return {...prevState, title: e.target.value}
+                  return {...prevState, title_project: e.target.value}
                 })} name="title" placeholder="Membuat website protofolio" label="Judul Project" />
                 <InputText onChange={(e) => setForm((prevState) => {
                   return {...prevState, description: e.target.value}
                 })} name="description" placeholder="Membuat website protofolio" label="Deskripsi Project" />
+                <InputText type="number" onChange={(e) => setForm((prevState) => {
+                  return {...prevState, range_min_fee: e.target.value}
+                })} name="fee_min" placeholder="fee min" label="fee min" />
+                <InputText type="number" onChange={(e) => setForm((prevState) => {
+                  return {...prevState, range_max_fee: e.target.value}
+                })} name="fee_max" placeholder="fee max" label="fee max" />
                 <InputText onChange={(e) => setForm((prevState) => {
                   return {...prevState, reference: e.target.value}
-                })} name="referensi" placeholder="http://xxxxxx" label="Referensi Project (web / app serupa) - (optional)" />
-                <InputFile onChange={inputFileHandler} name="srs" label="File SRS (Software Requirement Specification) - (optional)" />
+                })} name="referensi" placeholder="http://xxxxxx" label="Referensi Project (web / app serupa)" />
+                <InputFile onChange={inputFileHandler} name="srs" label="File SRS (Software Requirement Specification)" />
                 <Button>Submit</Button>
               </form>
             </div>
           </div>
         </div>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Error Input</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <p>Harap diisi semua inputan, yang di wajibkan!</p>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button color="bg-red-500" onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+        <Loading show={loading} />
       </LayoutApp>
     </>
   )

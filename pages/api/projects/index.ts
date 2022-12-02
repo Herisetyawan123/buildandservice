@@ -106,7 +106,9 @@ handler.put(async (req: NextApiRequestMultipart, res: NextApiResponse) => {
         message: 'Data not found',
       });
     }
+    
     if (Object.values(fields).some((field) => field == '')) {
+      
       return res.status(400).json({
         message: 'Bad Request semua fields harus diisi',
       });
@@ -125,6 +127,7 @@ handler.put(async (req: NextApiRequestMultipart, res: NextApiResponse) => {
       data,
     });
   } catch (error) {
+    
     return res.status(500).json({
       message: 'Internal Server Error',
     });

@@ -3,17 +3,14 @@ import axios from "axios";
 const projectFetcher = {
   addProject: async (formData) => {
     let response = await axios({
-      url: "/api/project",
+      url: "/api/projects",
       method: "POST",
       headers: {
         "Content-Type": "multipart/form-data"
       },
       data: formData
     });
-    if (response.data.message == "Success"){
-      return true
-    }
-    return false
+    return response
   }
 }
 
