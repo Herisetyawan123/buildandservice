@@ -8,10 +8,10 @@ import LayoutApp from "../layouts/Frontend";
 import projectFetcher from "../utils/functions/projects-fetcher";
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useDisclosure, useToast } from "@chakra-ui/react";
 import Loading from "../components/Element/Modal/Loading";
+import FailedModal from "../components/Element/Modal/FailedModal";
 
 export default function Requests() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [form, setForm] = useState({
+  const defForm = {
     "name": "",
     "phone": "",
     "title_project": "",
@@ -21,11 +21,14 @@ export default function Requests() {
     // "estimation": "",
     "range_min_fee": "",
     "range_max_fee": "",
-  });
+  }
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [form, setForm] = useState(defForm);
   const toast = useToast()
   const [file, setFile] = useState('')
   const [mError, setMerror] = useState([])
   const [loading, setLoading] = useState(false)
+  const [fail, setFail] = useState(false)
 
   const data: ListSelect[] = [
     {
@@ -103,6 +106,8 @@ export default function Requests() {
             duration: 9000,
             isClosable: true,
           })
+          setForm(defForm)
+          setFail(false)
         }else{
           throw "Terjadi kesalahan"
         }
@@ -110,9 +115,10 @@ export default function Requests() {
       }else{
         onOpen()
       }
-      
+      setLoading(false)
     } catch (error) {
-      console.log(error)
+      setLoading(false)
+      setFail(true)
     }
   }
 
@@ -136,28 +142,28 @@ export default function Requests() {
             </div>
             <div>
               <form onSubmit={handleSubmit}>
-                <InputText onChange={(e) => setForm((prevState) => {
+                <InputText value={form.name} onChange={(e) => setForm((prevState) => {
                   return {...prevState, name: e.target.value}
                 })} name="name" placeholder="Junaidi Suparman" label="Nama" />
-                <InputText onChange={(e) => setForm((prevState) => {
+                <InputText value={form.phone} onChange={(e) => setForm((prevState) => {
                   return {...prevState, phone: e.target.value}
                 })} name="phone" placeholder="628xxxxx" label="Nomor Telephone" />
                 <SelectInput data={data} onChange={(e) => setForm((prevState) => {
                   return {...prevState, type_poject: e.target.value}
                 })} name="type" placeholder="website | mobile | GUI | CLI" label="Type Project" />
-                <InputText onChange={(e) => setForm((prevState) => {
+                <InputText value={form.title_project} onChange={(e) => setForm((prevState) => {
                   return {...prevState, title_project: e.target.value}
                 })} name="title" placeholder="Membuat website protofolio" label="Judul Project" />
-                <InputText onChange={(e) => setForm((prevState) => {
+                <InputText value={form.description} onChange={(e) => setForm((prevState) => {
                   return {...prevState, description: e.target.value}
                 })} name="description" placeholder="Membuat website protofolio" label="Deskripsi Project" />
-                <InputText type="number" onChange={(e) => setForm((prevState) => {
+                <InputText value={form.range_min_fee} type="number" onChange={(e) => setForm((prevState) => {
                   return {...prevState, range_min_fee: e.target.value}
                 })} name="fee_min" placeholder="fee min" label="fee min" />
-                <InputText type="number" onChange={(e) => setForm((prevState) => {
+                <InputText value={form.range_max_fee} type="number" onChange={(e) => setForm((prevState) => {
                   return {...prevState, range_max_fee: e.target.value}
                 })} name="fee_max" placeholder="fee max" label="fee max" />
-                <InputText onChange={(e) => setForm((prevState) => {
+                <InputText value={form.reference} onChange={(e) => setForm((prevState) => {
                   return {...prevState, reference: e.target.value}
                 })} name="referensi" placeholder="http://xxxxxx" label="Referensi Project (web / app serupa)" />
                 <InputFile onChange={inputFileHandler} name="srs" label="File SRS (Software Requirement Specification)" />
@@ -183,6 +189,7 @@ export default function Requests() {
           </ModalContent>
         </Modal>
         <Loading show={loading} />
+        <FailedModal show={fail} error={'File harus berekstensi pdf tidak boleh yang lain'} onClick={() => setFail((prevState) => !prevState)} />
       </LayoutApp>
     </>
   )
