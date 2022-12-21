@@ -32,10 +32,10 @@ const Home: NextPage = () => {
               <h3 className='font-medium text-green-500 text-lg'>we shall never deny guest even the most ridiculous request.</h3>
               <h1 className='text-slate-600 font-bold text-3xl mt-2'>Our Service</h1>
             </div>
-            <div className='mt-5 flex flex-wrap sm:justify-center sm:flex-row sm:gap-x-5 flex-col items-center gap-y-5'>
-              <CardService image={WebDesign} title="Web Developer" />
-              <CardService image={Mobile} title="Android Developer" />
-              <CardService image={Source} title="Source Coding" />
+            <div className='mt-5 flex flex-wrap sm:justify-center sm:flex-row sm:gap-x-5 flex-col gap-y-5'>
+              <CardService image={WebDesign} title="Web Developer" deskripsi='Build and Service menyediakan layanan pembuatan dan perbaikan website, kami menguasai php, js, go, html dan css. Framework yang kita pakai adalah laravel,next js, react js, express, tailwind, bootstrap, dll' />
+              <CardService image={Mobile} title="Android Developer" deskripsi='Build and Service menyediakan layanan pembuatan dan perbaikan aplikasi mobile kami menggunakan framework flutter dalam penyelesainnya' />
+              <CardService image={Source} title="Source Coding" deskripsi='Build And Service juga menjual berbagai source code yang dapat kalian pelajari atau sebagai bahan pembuatan project kalian.' />
             </div>
           </div>
         </section>

@@ -1,8 +1,9 @@
 import Image, { StaticImageData } from "next/image";
 import WebDesign from "../../../assets/img/web.png"
 import Button from "../Button/Index";
-const CardService = ({ title, image }: {
+const CardService = ({ title, image, deskripsi }: {
   title: string
+  deskripsi: string
   image: StaticImageData
 }) => {
   return (
@@ -12,7 +13,9 @@ const CardService = ({ title, image }: {
       </div>
       <div className="mt-5 text-center w-full">
         <h1 className="font-bold text-2xl text-green-600">{ title }</h1>
-        <p className="mt-5 text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae tempore doloribus consequatur officia illum necessitatibus</p>
+        <p className="mt-5 text-gray-700">
+          { deskripsi }
+        </p>
       </div>
       <div className="w-full">
         <Button link={'/'} className="w-full text-center" color="bg-green-600">More</Button>
