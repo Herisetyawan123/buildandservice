@@ -47,11 +47,11 @@ const Home: NextPage = () => {
           </div>
           <div className='mt-10 space-y-5 '>
             {/* <FaQPart /> */}
-            <TabDropdown question='Lorem ipsum dolor sit amet consectetur adipisicing elit.' answer='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa eligendi fugiat quia unde itaque fugit voluptas sed mollitia enim minima veniam ab, nostrum qui omnis, sint dolor laborum deleniti quo.' />
-            <TabDropdown question='Lorem ipsum dolor sit amet consectetur adipisicing elit.' answer='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa eligendi fugiat quia unde itaque fugit voluptas sed mollitia enim minima veniam ab, nostrum qui omnis, sint dolor laborum deleniti quo.' />
-            <TabDropdown question='Lorem ipsum dolor sit amet consectetur adipisicing elit.' answer='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa eligendi fugiat quia unde itaque fugit voluptas sed mollitia enim minima veniam ab, nostrum qui omnis, sint dolor laborum deleniti quo.' />
-            <TabDropdown question='Lorem ipsum dolor sit amet consectetur adipisicing elit.' answer='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa eligendi fugiat quia unde itaque fugit voluptas sed mollitia enim minima veniam ab, nostrum qui omnis, sint dolor laborum deleniti quo.' />
-            <TabDropdown question='Lorem ipsum dolor sit amet consectetur adipisicing elit.' answer='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa eligendi fugiat quia unde itaque fugit voluptas sed mollitia enim minima veniam ab, nostrum qui omnis, sint dolor laborum deleniti quo.' />
+            <TabDropdown question='Apakah itu build and service ?' answer='Build And Service atau BaS adalah sebuah platform yang melayani jasa tentang IT khususnya programming disini juga menjual berbagai sourcecode, melayani pembuatana software kecil maupun besar dan sebagainya' />
+            <TabDropdown question='Bagaimana penggunaannya ?' answer='Untuk penggunaan nya tinggal akses website kami yaitu https://buildandservice.my.id' />
+            <TabDropdown question='Bagaimana kualitas yang dihasilkan ?' answer='Kami disini mencoba berusaha mewujudkan ekspektasi customer supaya customer kami puas' />
+            <TabDropdown question='Untuk pembuatan software bagaimana pemesanannya ?' answer='Masuk ke halaman website kami terus pencet tombol request project maka disitu akan di arah ke form request project.' />
+            <TabDropdown question='Bagaimana alur pemesanan software ?' answer='Pertama pengguna/customer di haruskan mengisi form yang telah disediakan kemudian kami akan mengecek data yang telah diisi, dan pihak kami akan menghubungi by whatsapp dari sini kami akan mengajak customer untuk meet terlebih dahulu jika terjadi kesepakatan kami akan mengeksekusi project nya' />
           </div>
           
 
