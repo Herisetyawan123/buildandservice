@@ -6,6 +6,9 @@ interface Props{
     image: StaticImageData
     name: string
     description: string
+    instagram: string
+    github: string
+    linkedin: string
 }
 
 const CardTeam = ({ image, name, description } : Props) => {
@@ -19,13 +22,13 @@ const CardTeam = ({ image, name, description } : Props) => {
                 <p className="text-slate-700 mt-2 text-sm">{ description }</p>
             </div>
             <div className="mt-10 gap-x-5 flex">
-                <Link href={'https://instagram.com/herisetyawan233'} passHref>
+                <Link href={'https://instagram.com/per.pdanaph'} passHref>
                     <FaInstagram size={25} className="text-green-600 hover:text-green-800" />
                 </Link>
-                <Link href={'https://instagram.com/herisetyawan233'} passHref>
+                <Link href={'https://github.com/perdanaph'} passHref>
                     <FaGithubAlt size={25} className="text-green-600 hover:text-green-800" />
                 </Link>
-                <Link href={'https://instagram.com/herisetyawan233'} passHref>
+                <Link href={'https://www.linkedin.com/in/perdana-putro-harwanto-1515a5245'} passHref>
                     <FaLinkedin size={25} className="text-green-600 hover:text-green-800" />
                 </Link>
             </div>

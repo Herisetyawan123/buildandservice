@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import CardTeam from "../components/Element/Card/CardTeam";
 import LayoutApp from "../layouts/Frontend";
-import Heri from "../assets/profile/heri.jpg"
+import Heri from "../assets/profile/heri.jpg";
+import Perdana from "../assets/profile/perdana.jpeg";
 import Abstrak from "../assets/bg/abstrak.svg"
 
 const Team: NextPage = () => {
@@ -16,7 +17,7 @@ const Team: NextPage = () => {
                         </div>
                         <div className="mt-10 flex sm:gap-x-10 flex-col sm:flex-row gap-y-10 items-center">
                             <CardTeam image={Heri} name="Heri Setyawan" description="i'am a fullstack developer in website and mobile flutter developer."/>
-                            <CardTeam image={Heri} name="Perdana Putro" description="i'am a fullstack developer in website and mobile flutter developer."/>
+                            <CardTeam image={Perdana} name="Perdana Putro" description="i'am a Backend Developer and mobile flutter developer."/>
                         </div>
                     </div>
                 </section>
