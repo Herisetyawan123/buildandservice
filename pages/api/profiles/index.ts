@@ -10,9 +10,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     return res.status(200).json(data);
   } else if (req.method == 'POST') {
-    const { username, full_name, email, password } = req.body;
+    const { full_name, email, password } = req.body;
     const saltPassword = hashPassword.hash(password);
-    const result = await supabase.from('profiles').insert({ username, full_name, email, password: saltPassword });
+    const result = await supabase.from('profiles').insert({ full_name, email, password: saltPassword });
     return res.status(201).json({ message: result.statusText });
   }
 }

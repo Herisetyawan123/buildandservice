@@ -16,8 +16,8 @@ const Team: NextPage = () => {
                             <h1 className='text-gray-500 mt-2 '>In Developing this platform, we need a team to help some issue and fixing it.</h1>
                         </div>
                         <div className="mt-10 flex sm:gap-x-10 flex-col sm:flex-row gap-y-10 items-center">
-                            <CardTeam image={Heri} name="Heri Setyawan" description="i'am a fullstack developer in website and mobile flutter developer."/>
-                            <CardTeam image={Perdana} name="Perdana Putro" description="i'am a Backend Developer and mobile flutter developer."/>
+                            <CardTeam image={Heri} name="Heri Setyawan" description="i'am a fullstack developer in website and mobile flutter developer." instagram={"https://instagram.com/herisetyawan233"} github={"https://github.com/herisetyawan123"} linkedin={"https://www.linkedin.com/in/heri-setyawan-905758202/"}/>
+                            <CardTeam image={Perdana} name="Perdana Putro" description="i'am a Backend Developer and mobile flutter developer." instagram={"https://instagram.com/perdanaph"} github={"https://github.com/perdanaph"} linkedin={"https://www.linkedin.com/in/heri-setyawan-905758202/"}/>
                         </div>
                     </div>
                 </section>
