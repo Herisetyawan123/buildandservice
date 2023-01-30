@@ -93,7 +93,7 @@ const Service: NextPage = (): JSX.Element => {
                             { `${item.range_min_fee} - ${item.range_max_fee}` }
                           </Td>
                           <Td>
-                            <Badge colorScheme={ item.status == "Pending" ? 'yellow' : 'green'}>
+                            <Badge colorScheme={ item.status == "Pending" ? 'yellow' : item.status == "Doing" ? 'cyan' : item.status == "Cancel" ? 'red' : 'green'}>
                               { item.status }
                             </Badge>
                           </Td>
@@ -160,7 +160,7 @@ const Service: NextPage = (): JSX.Element => {
 
               <Box className="max-w-full">
                 <Heading as="h2" size={'xs'} className="text-lg font-bold">Status :</Heading>
-                <Badge colorScheme={ item.status == "Pending" ? 'yellow' : 'green'}>
+                <Badge colorScheme={ item.status == "Pending" ? 'yellow' : item.status == "Doing" ? 'cyan' : item.status == "Cancel" ? 'red' : 'green'}>
                   { item.status }
                 </Badge>
               </Box>

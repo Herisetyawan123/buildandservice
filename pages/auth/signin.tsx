@@ -22,7 +22,6 @@ const SignIn: NextPage = (props): JSX.Element => {
   useEffect(() => {
     if (status == "loading") setLoading(true)
     if (status == "unauthenticated") setLoading(false)
-    // if (status != "loading") setLoading(!loading)
     if (status == 'authenticated') Router.replace('/dashboard')
   }, [status])
 
