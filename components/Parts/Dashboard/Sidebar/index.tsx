@@ -33,7 +33,7 @@ const Sidebar = () => {
                   </Link> 
               </div>
               <div>
-                  <button className="flex items-center gap-x-3 font-medium bg-blue-300 px-5 py-2 rounded-md text-white" onClick={ () => signOut() }><FaSignOutAlt /> Sign Out</button>
+                  <button className="flex items-center gap-x-3 font-medium bg-red-500 px-5 py-2 rounded-md text-white" onClick={ () => signOut() }><FaSignOutAlt /> Sign Out</button>
               </div>
           </div>
       </div>
