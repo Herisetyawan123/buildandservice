@@ -23,7 +23,6 @@ const ChildBurger = styled.span`
     display: inline-block;
     position: absolute;
     left: 0;
-    
     transition: all 0.3s;
   }
   &::after{

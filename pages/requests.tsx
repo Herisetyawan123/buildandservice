@@ -15,7 +15,7 @@ export default function Requests() {
     "name": "",
     "phone": "",
     "title_project": "",
-    "type_poject": "-",
+    "type_project": "-",
     "description": "",
     "reference": "",
     // "estimation": "",
@@ -58,7 +58,7 @@ export default function Requests() {
           name: "Nomor Phone harap di isi",
         })
       }
-      if(form.type_poject == "-") {
+      if(form.type_project == "-") {
         error.push({
           type_project: "Nama harap di isi",
         })
@@ -149,7 +149,7 @@ export default function Requests() {
                   return {...prevState, phone: e.target.value}
                 })} name="phone" placeholder="628xxxxx" label="Nomor Telephone" />
                 <SelectInput data={data} onChange={(e) => setForm((prevState) => {
-                  return {...prevState, type_poject: e.target.value}
+                  return {...prevState, type_project: e.target.value}
                 })} name="type" placeholder="website | mobile | GUI | CLI" label="Type Project" />
                 <InputText value={form.title_project} onChange={(e) => setForm((prevState) => {
                   return {...prevState, title_project: e.target.value}

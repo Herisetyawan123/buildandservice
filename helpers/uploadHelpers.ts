@@ -10,9 +10,7 @@ const uploadHelpers = {
     return { data, error };
   },
   deleteImage: async (imgUrl: string) => {
-    console.log(imgUrl);
     const { data, error } = await supabase.storage.from('thumbnail').remove([imgUrl]);
-
     return { data, error };
   },
 

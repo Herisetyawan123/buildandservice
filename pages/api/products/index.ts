@@ -12,7 +12,7 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     // get data by id
     if (id) {
-      const { data, error, status, statusText } = await supabase.from('products').select('*').eq('id', id).single();
+      const { data, error, status } = await supabase.from('products').select('*, categories( type )').eq('id', id).single();
       if (error) {
         return res.status(status).json({
           message: error.message,
@@ -24,7 +24,7 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
       });
     }
     // get all data products
-    const { data, error, status, statusText } = await supabase.from('products').select('*');
+    const { data, error, status, statusText } = await supabase.from('products').select('*, categories( type )');
     if (error) {
       return res.status(status).json({
         statusText,
@@ -61,17 +61,28 @@ handler.post(async (req: NextApiRequestMultipart, res: NextApiResponse) => {
     }
     const fileName = `products-${new Date().getTime()}`;
     const rawData = fs.readFileSync(filepath);
+       
     let { data, error } = await uploadHelpers.uploadImageProduct(rawData, fileName, mimetype);
-    const product = await supabase.from('products').insert({
-      ...fields,
-      thumbnail: 'https://nymvxvireoklhrifvggx.supabase.co/storage/v1/object/public/thumbnail/' + data.path,
-    });
+    
     if (error) {
       return res.status(400).json({
         message: error,
       });
     }
-    res.status(201).json({
+
+    const product = await supabase.from('products').insert({
+      ...fields,
+      thumbnail: 'https://nymvxvireoklhrifvggx.supabase.co/storage/v1/object/public/thumbnail/' + data.path,
+    });
+
+    if( product.error){
+      await uploadHelpers.deleteImage(data.path)
+      return res.status(product.status).json({
+        message: product.error.message,
+      });
+    }
+
+    return res.status(201).json({
       product: product.data,
       message: 'Success',
     });

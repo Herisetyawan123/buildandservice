@@ -1,14 +1,19 @@
 import Link from "next/link"
 import { HiCode, HiCube, HiDatabase, HiOutlineColorSwatch } from "react-icons/hi"
 import { FaSignOutAlt } from "react-icons/fa"
-
 import { signOut } from "next-auth/react"
+import Image from "next/image"
+import Logo from "../../../../assets/profile/logo.png";
+
+
 const Sidebar = () => {
   return (
-      <div className="w-96 h-full bg-white sticky hidden sm:block">
+      <div className="h-full w-[20vw] bg-white hidden md:block">
           {/* logo */}
-          <div className="w-full h-20 flex items-center px-5 gap-x-3">
-              <div className="bg-blue-500 h-11 w-11 rounded-full"></div>
+          <div className="w-full h-20 flex items-center justify-center px-5 gap-x-3">
+              <div className=" h-11 w-11 rounded-full">
+                <Image src={Logo} alt="Logo build and service" className="w-full h-full object-contain" />
+              </div>
               <h1 className="font-bold text-base text-blue-900">Build And Service</h1>
           </div>
           {/* menu */}

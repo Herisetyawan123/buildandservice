@@ -1,6 +1,5 @@
 import { useSession } from "next-auth/react"
-import Head from "next/head"
-
+import Head from "next/head"    
 import Router from "next/router"
 import { useEffect, useState } from "react"
 import { HiSearch } from "react-icons/hi"
@@ -8,7 +7,6 @@ import Burger from "../../components/Element/Burger"
 import Close from "../../components/Element/Close"
 import BottomModal from "../../components/Parts/BottomModal"
 import Sidebar from "../../components/Parts/Dashboard/Sidebar"
-import LayerBlur from "../../components/Parts/LayerBlur"
 
 const LayoutDash = ({ children, title = "Dashboard - BuildAndService" }: { children: React.ReactNode, title?: string }) => {
     const [click, setClick] = useState(false);
@@ -27,12 +25,12 @@ const LayoutDash = ({ children, title = "Dashboard - BuildAndService" }: { child
                 <title>{ title }</title>
             </Head>
             
-            <main className="flex bg-blue-50 h-[100vh]">
+            <main className="flex bg-blue-50 h-[100vh] w-[100vw]">
                 <Sidebar />
-                <section className='w-full'>
+                <section className='md:w-[80vw] w-[100vw]'>
                     {/* navbar */}
-                    <div className="bg-white h-20 flex justify-between sm:justify-end items-center px-5 sm:px-20 shadow ">
-                        <div className="block sm:hidden">
+                    <div className="bg-white h-20 flex justify-between md:justify-end items-center px-5 sm:px-20 shadow ">
+                        <div className="block md:hidden">
                             <Burger click={click} onClick={() => setClick((prevState) => !prevState)} />
                         </div>
                         <div className="flex gap-x-2 justify-end items-center">
