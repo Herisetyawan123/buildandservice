@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    domains: ["buildwithangga.com"],
+    domains: ["buildwithangga.com", "nymvxvireoklhrifvggx.supabase.co"],
   },
 };
 
