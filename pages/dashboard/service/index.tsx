@@ -164,9 +164,6 @@ const Service: NextPage = (): JSX.Element => {
                   { item.status }
                 </Badge>
               </Box>
-
-              
-          
             </VStack>
           </ModalBody>
 
